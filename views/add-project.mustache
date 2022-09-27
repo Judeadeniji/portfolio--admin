@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {{>partials/headtags}}
+    
+    <link href="../lib/summernote/summernote-bs4.css" rel="stylesheet">
+
+    <title>My Portfolio admin</title>
+</head>
+
+  <body class="collapsed-menu with-subleft">
+
+    <!-- ########## START: LEFT PANEL ########## -->
+    {{>partials/left-panel}}
+    <!-- ########## END: LEFT PANEL ########## -->
+
+    <!-- ########## START: HEAD PANEL ########## -->
+   {{>partials/head-panel}}
+    <!-- br-header -->
+    <!-- ########## END: HEAD PANEL ########## -->
+
+    <!-- ########## START: RIGHT PANEL ########## -->
+    {{>partials/right-panel}}
+    <!-- br-sideright -->
+    <!-- ########## END: RIGHT PANEL ########## --->
+
+    <!-- ########## START: MAIN PANEL ########## -->
+    <div class="br-mainpanel">
+      <div class="br-pageheader pd-y-15 pd-l-20">
+        <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="/">Oluwaferanmi</a>
+          <span class="breadcrumb-item active">{{url}}</span>
+        </nav>
+      </div>
+      <!-- br-pageheader -->
+        <div class="pd-30">
+          <h4 class="tx-gray-800 mg-b-5">Add New Projects</h4>
+          <p class="mg-b-0">You can always do Bigger things than this.</p>
+        </div>
+      <!-- d-flex -->
+
+      <div class="br-pagebody">
+        <!-- start you own content here -->
+        <form type="reset" id="form" method="post" data-parsley-validate>
+          <div class="mb-2 form-group">
+            <label for="title" class="form-label">Title</label>
+            <input class="form-control" name="title" placeholder="Title" type="text" required>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="category" class="form-label">Category</label>
+            <input class="form-control" name="category" placeholder="category" type="text" required>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="img_url" class="form-label">Image Url</label>
+            <input class="form-control" name="img_url" placeholder="Image url" type="url" required>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="client" class="form-label">Client</label>
+            <input class="form-control" name="client" placeholder="client" type="text" required>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="link" class="form-label">Link</label>
+            <input class="form-control" name="link" placeholder="link" type="text" required>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="body" class="form-label">Body</label>
+            <textarea class="form-control" name="body" cols="10" placeholder="body"  type="text" required></textarea>
+          </div>
+          <button type="submit" id="submit" class="btn btn-outline-primary mt-2">Submit</button>
+        </form>
+      </div>
+      <!-- br-pagebody -->
+
+    </div>
+    <!-- br-mainpanel -->
+
+
+
+    <!-- ########## END: MAIN PANEL ########## -->
+   
+    
+   
+    <script src="../lib/jquery/jquery.js"></script>
+    <script src="../lib/popper.js/popper.js"></script>
+    <script src="../lib/bootstrap/bootstrap.js"></script>
+    <script src="../lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="../lib/moment/moment.js"></script>
+    <script src="../lib/summernote/summernote-bs4.min.js"></script>
+    <script src="../lib/jquery-ui/jquery-ui.js"></script>
+    <script src="../lib/jquery-switchbutton/jquery.switchButton.js"></script>
+    <script src="../lib/peity/jquery.peity.js"></script>
+    <script src="../lib/highlightjs/highlight.pack.js"></script>
+    <script src="../lib/medium-editor/medium-editor.js"></script>
+
+    <script src="../js/bracket.js"></script>
+
+    <script>
+    $(() => {
+    $('#submit').click(
+        function(event) {
+            event.preventDefault();
+            var form = $('#form');
+            var url = 'http://localhost:8000/api/projects';
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: form.serialize(),
+                success: function(data) {
+                  console.log(data);
+                }
+            })
+
+            $('#form')[0].reset();
+        }
+    )
+})
+
+
+    </script>
+
+    <script>
+      $(function(){
+        'use strict';
+
+        // Inline editor
+        var editor = new MediumEditor('.editable');
+
+        // Summernote edito
+        $('#summernote').summernote({
+          height: 700,
+          tooltip: false,
+          placeholder: 'Type here'
+        })
+      });
+    </script>
+
+  </body>
+</html>

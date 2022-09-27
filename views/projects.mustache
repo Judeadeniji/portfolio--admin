@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <title>My Portfolio admin</title>
+
+  <link href="../lib/highlightjs/github.css" rel="stylesheet">
+  <link href="../lib/datatables/jquery.dataTables.css" rel="stylesheet">
+  <link href="../lib/select2/css/select2.min.css" rel="stylesheet">
+  {{>partials/headtags}}
+</head>
+
+<body class="collapsed-menu with-subleft">
+
+  <!-- ########## START: LEFT PANEL ########## -->
+  {{>partials/left-panel}}
+  <!-- ########## END: LEFT PANEL ########## -->
+
+  <!-- ########## START: HEAD PANEL ########## -->
+  {{>partials/head-panel}}
+  <!-- br-header -->
+  <!-- ########## END: HEAD PANEL ########## -->
+
+  <!-- ########## START: RIGHT PANEL ########## -->
+  {{>partials/right-panel}}
+  <!-- br-sideright -->
+  <!-- ########## END: RIGHT PANEL ########## --->
+
+  <!-- ########## START: MAIN PANEL ########## -->
+  <div class="br-mainpanel">
+    <div class="br-pageheader pd-y-15 pd-l-20">
+      <nav class="breadcrumb pd-0 mg-0 tx-12">
+        <a class="breadcrumb-item" href="/">Oluwaferanmi</a>
+        <span class="breadcrumb-item active">{{breadcrumbs.url}}</span>
+      </nav>
+    </div>
+    <!-- br-pageheader -->
+    <div class="pd-30">
+      <h4 class="tx-gray-800 mg-b-5">All Projects</h4>
+      <p class="mg-b-0">You can always do Bigger things than this.</p>
+    </div>
+    <!-- d-flex -->
+
+    <div class="br-pagebody">
+      <!-- start you own content here -->
+
+      <div class="br-section-wrapper">
+        <h6 class="tx-gray-800 tx-uppercase tx-bold tx-14 mg-b-10">List of Projects</h6>
+        <p class="mg-b-25 mg-lg-b-50">Searching, ordering and paging goodness will be immediately added to the table, as
+          shown in this example.</p>
+
+
+        <div class="table-wrapper">
+
+
+          <table id="datatable1" class="table display responsive nowrap">
+            <thead>
+              <tr>
+                <th class="wd-15p">Name</th>
+                <th class="wd-15p">Category</th>
+                <th class="wd-20p">Client</th>
+                <th class="wd-15p">Year</th>
+                <th class="wd-25p">Author</th>
+                <th class="wd-10p">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#projects.posts}}
+              <tr>
+                <td>{{title}}</td>
+                <td>{{category}}</td>
+                <td>{{client}}</td>
+                <td>{{createdAt}}</td>
+                <td>{{author}}</td>
+                <td>
+                  <a href="#" class="btn btn-outline-primary mr-2 btn-icon rounded-circle mg-r-5">
+                    <div data-toggle="modal" data-target="#editmodal-{{{_id}}}">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                  </a>
+                  <a href="#" class="btn btn-outline-danger btn-icon rounded-circle mg-r-5">
+                    <div id="delete" onclick="del(`{{_id}}`)">
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </a>
+                </td>
+              </tr>
+              <!-- Modal -->
+              <div id="editmodal-{{{_id}}}" class="modal fade" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-vertical-center" role="document">
+                  <div class="modal-content bd-0 tx-14">
+                    <form id="editform">
+                      <div class="modal-header pd-y-20 pd-x-25">
+                        <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold">Edit Project</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body pd-25">
+                        <div class="form-layout form-layout-1">
+                          <div class="row mg-b-25">
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label class="form-control-label">Title: <span class="tx-danger">*</span></label>
+                                <input class="form-control" type="text" name="title" value="{{{title}}}"
+                                  placeholder="Enter title">
+                              </div>
+                            </div><!-- col-4 -->
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label class="form-control-label">Client: <span class="tx-danger">*</span></label>
+                                <input class="form-control" type="text" name="client" value="{{{client}}}"
+                                  placeholder="Enter Client">
+                              </div>
+                            </div><!-- col-4 -->
+                            <div class="col-12">
+                              <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">Image: <span class="tx-danger">*</span></label>
+                                <input type="text" class="form-control" value="{{{img_url}}}" name="img_url"
+                                  id="img_url" required aria-required="true">
+                              </div>
+                            </div><!-- col-4 -->
+                            <div class="col-12">
+                              <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">Link: <span class="tx-danger">*</span></label>
+                                <input type="url" class="form-control" value="{{{link}}}" name="link" id="link" required
+                                  aria-required="true">
+                              </div>
+                            </div><!-- col-4 -->
+                            <div class="col-12">
+                              <div class="form-group mg-b-10-force">
+                                <label class="form-control-label">Category: <span class="tx-danger">*</span></label>
+                                <input type="text" class="form-control" value="{{{category}}}" name="category"
+                                  id="category">
+                              </div>
+                            </div><!-- col-4 -->
+
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label class="form-control-label">Content: <span class="tx-danger">*</span></label>
+                                <input class="form-control" type="text" name="body" value="{{{body}}}">
+                              </div>
+                            </div><!-- col-4 -->
+                          </div><!-- row -->
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" onclick="update(`{{_id}}`)" id="edit"
+                            class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save
+                            changes</button>
+                          <button type="button"
+                            class="btn btn-secondary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium"
+                            data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- modal-dialog -->
+              {{/projects.posts}}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- br-pagebody -->
+
+  </div>
+  <!-- br-mainpanel -->
+
+
+
+  <!-- ########## END: MAIN PANEL ########## -->
+
+  <script src="../lib/jquery/jquery.js"></script>
+  <script src="../lib/popper.js/popper.js"></script>
+  <script src="../lib/bootstrap/bootstrap.js"></script>
+  <script src="../lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+  <script src="../lib/moment/moment.js"></script>
+  <script src="../lib/jquery-ui/jquery-ui.js"></script>
+  <script src="../lib/jquery-switchbutton/jquery.switchButton.js"></script>
+  <script src="../lib/peity/jquery.peity.js"></script>
+  <script src="../lib/highlightjs/highlight.pack.js"></script>
+  <script src="../lib/datatables/jquery.dataTables.js"></script>
+  <script src="../lib/datatables-responsive/dataTables.responsive.js"></script>
+  <script src="../lib/select2/js/select2.min.js"></script>
+
+  <script src="../js/bracket.js"></script>
+  <script>
+
+    const update = (id) => {
+      $('#edit').click(
+        function (event) {
+          event.preventDefault();
+          var form = $('#editform');
+          var url = `http://localhost:8000/api/projects/${id}`;
+          $.ajax({
+            type: 'PATCH',
+            url: url,
+            data: form.serialize(),
+            success: function (data) {
+              location.reload();
+            }
+          })
+        }
+      )
+    }
+
+
+
+    function del(id) {
+      const xhttp = new XMLHttpRequest();
+      xhttp.open(
+        "DELETE", `http://localhost:8000/api/projects/${id}`, false
+      );
+      xhttp.send();
+      location.reload();
+    }
+  </script>
+  <script>
+    $(function () {
+      'use strict';
+
+      // show only the icons and hide left menu label by default
+      $('.menu-item-label,.menu-item-arrow').addClass('op-lg-0-force d-lg-none');
+
+      $(document).on('mouseover', function (e) {
+        e.stopPropagation();
+        if ($('body').hasClass('collapsed-menu')) {
+          var targ = $(e.target).closest('.br-sideleft').length;
+          if (targ) {
+            $('body').addClass('expand-menu');
+
+            // show current shown sub menu that was hidden from collapsed
+            $('.show-sub + .br-menu-sub').slideDown();
+
+            var menuText = $('.menu-item-label,.menu-item-arrow');
+            menuText.removeClass('d-lg-none');
+            menuText.removeClass('op-lg-0-force');
+
+          } else {
+            $('body').removeClass('expand-menu');
+
+            // hide current shown menu
+            $('.show-sub + .br-menu-sub').slideUp();
+
+            var menuText = $('.menu-item-label,.menu-item-arrow');
+            menuText.addClass('op-lg-0-force');
+            menuText.addClass('d-lg-none');
+          }
+        }
+      });
+
+    });
+  </script>
+  <script>
+    $(function () {
+      'use strict';
+
+      $('#datatable1').DataTable({
+        responsive: true,
+        language: {
+          searchPlaceholder: 'Search...',
+          sSearch: '',
+          lengthMenu: '_MENU_ items/page',
+        }
+      });
+
+      $('#datatable2').DataTable({
+        bLengthChange: false,
+        searching: false,
+        responsive: true
+      });
+
+      // Select2
+      $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+    });
+
+
+  </script>
+
+</body>
+
+</html>
