@@ -199,7 +199,7 @@
         function (event) {
           event.preventDefault();
           var form = $('#editform');
-          var url = `http://localhost:8000/api/projects/${id}`;
+          var url = `https://port-api.onrender.com/api/projects/${id}`;
           $.ajax({
             type: 'PATCH',
             url: url,
@@ -217,7 +217,7 @@
     function del(id) {
       const xhttp = new XMLHttpRequest();
       xhttp.open(
-        "DELETE", `http://localhost:8000/api/projects/${id}`, false
+        "DELETE", `https://port-api.onrender.com/api/projects/${id}`, false
       );
       xhttp.send();
       location.reload();
