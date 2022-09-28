@@ -24,7 +24,7 @@ router.get('/projects', (req,res) => {
         url: req.url.toUpperCase().split('/')
     }
 
-    const url = 'http://localhost:8000/api/projects';
+    const url = 'https://port-api.onrender.com/api/projects';
    
     fetch(url)
     .then(res => res.json())
