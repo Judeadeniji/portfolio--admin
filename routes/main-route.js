@@ -59,7 +59,7 @@ router.get('/messages', (req,res) => {
    
     fetch(url)
     .then(res => res.json())
-    .then(result =>{ res.render('projects', {breadcrumbs: breadcrumb, projects : result}) })
+    .then(result =>{ res.render('messages', {breadcrumbs: breadcrumb, messages : result}) })
     .catch(err => console.log(err))
 
 
