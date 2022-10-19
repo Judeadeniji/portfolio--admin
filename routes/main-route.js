@@ -49,6 +49,23 @@ router.get('/project/categories', (req,res) => {
 });
 
 
+router.get('/messages', (req,res) => {
+    const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+    const breadcrumb = {
+        url: req.url.toUpperCase().split('/')
+    }
+
+    const url = 'https://port-api.onrender.com/api/contact';
+   
+    fetch(url)
+    .then(res => res.json())
+    .then(result =>{ res.render('projects', {breadcrumbs: breadcrumb, projects : result}) })
+    .catch(err => console.log(err))
+
+
+});
+
+
 
 
 
