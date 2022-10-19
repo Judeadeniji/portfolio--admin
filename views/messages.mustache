@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>My Portfolio admin</title>
+    {{>partials/headtags}}
+  </head>
+
+  <body class="collapsed-menu with-subleft">
+
+    <!-- ########## START: LEFT PANEL ########## -->
+    {{>partials/left-panel}}
+    <!-- ########## END: LEFT PANEL ########## -->
+
+    <!-- ########## START: HEAD PANEL ########## -->
+   {{>partials/head-panel}}
+    <!-- br-header -->
+    <!-- ########## END: HEAD PANEL ########## -->
+
+    <!-- ########## START: RIGHT PANEL ########## -->
+    {{>partials/right-panel}}
+    <!-- br-sideright -->
+    <!-- ########## END: RIGHT PANEL ########## --->
+
+    <!-- ########## START: MAIN PANEL ########## -->
+    <div class="br-mainpanel">
+      <div class="br-pageheader pd-y-15 pd-l-20">
+        <nav class="breadcrumb pd-0 mg-0 tx-12">
+          <a class="breadcrumb-item" href="/">Oluwaferanmi</a>
+          <span class="breadcrumb-item active">{{url}}</span>
+        </nav>
+      </div>
+      <!-- br-pageheader -->
+        <div class="pd-30">
+          <h4 class="tx-gray-800 mg-b-5">Dashboard</h4>
+          <p class="mg-b-0">You can always do Bigger things than this.</p>
+        </div>
+      <!-- d-flex -->
+
+      <div class="br-pagebody">
+
+        <!-- start you own content here -->
+
+      </div>
+      <!-- br-pagebody -->
+
+    </div>
+    <!-- br-mainpanel -->
+
+
+
+    <!-- ########## END: MAIN PANEL ########## -->
+    {{>partials/scripts}}
+  </body>
+</html>
