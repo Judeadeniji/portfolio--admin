@@ -152,7 +152,7 @@
                           </div><!-- row -->
                         </div>
                         <div class="modal-footer">
-                          <button type="button" onclick="update({{_id}})" id="edit"
+                          <button type="button" onclick="update('{{{_id}}}')" id="edit"
                             class="btn btn-primary tx-11 tx-uppercase pd-y-12 pd-x-25 tx-mont tx-medium">Save
                             changes</button>
                           <button type="button"
@@ -204,7 +204,7 @@
           var form = $('#editform');
           var url = `https://port-api.onrender.com/api/projects/${id}`;
           $.ajax({
-            type: 'PATCH',
+            type: 'PUT',
             url: url,
             data: form.serialize(),
             success: function (data) {
